@@ -1,0 +1,54 @@
+<html>
+<head>
+<script type='text/javascript' src='/javascripts/jquery-1.6.4.min.js'></script>
+<script type='text/javascript' src='/javascripts/jquery-ui-1.8.16.custom.min.js'></script>
+<script type='text/javascript' src='/javascripts/jtag.js'></script>
+<link media="screen" rel="stylesheet" href="/stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css"> </link>
+<link media="screen" rel="stylesheet" href="/stylesheets/jquery.tag.css" type="text/css"> </link>
+</head>
+
+<body>
+	
+<img src="/data/<%= image.url%>" id="myimg" />
+
+<script type='text/javascript'>
+
+
+	var allImages = ["ADA", "ADE", "ADF", "ADL", "AFD", "AIA", "AIB", "AIM", "AIN", "AIY", "AIZ", "ALA", "ALM", "ALN", "AQR", "ASE", "ASG", "ASH", "ASI", "ASJ", "ASK", "ASn", "AUA", "AVA", "AVB", "AVD", "AVE", "AVF", "AVG", "AVH", "AVJ", "AVK", "AVL", "AVM", "AWA", "AWB", "AWC", "BAG", "BDU", "CAN", "CEP", "DAn", "DBn", "DDn", "DVA", "DVB", "DVC", "FLP", "GLR", "HSN", "IL1", "IL2", "LUA", "OLL", "OLQ", "PDA", "PDB", "PDE", "PHA", "PHB", "PHC", "PLM", "PLN", "PQR", "PVC", "PVD", "PVM", "PVN", "PVP", "PVQ", "PVR", "PVT", "PVW", "RIA", "RIB", "RIC", "RID", "RIF", "RIG", "RIH", "RIM", "RIP", "RIR", "RIS", "RIV", "RMD", "RME", "RMF", "RMG", "RMH", "SAA", "SAB", "SDQ", "SIA", "SIB", "SMB", "SMD", "URA", "URB", "URX", "URY", "VAn", "VBn", "VCn", "VDn"];
+
+	var validLabels = $.map( allImages,  function(name, index){
+		return [name + "L", name + "R"]; 
+	});
+
+
+
+	var imageId = "<%= image.id%>";
+
+	$("#myimg").tag({
+		showTag: 'always',
+		resizable: false,
+		defaultWidth : 60,
+		defaultHeight: 60,
+		autoComplete: validLabels,
+		save: function(width,height,top,left,label,theTag){
+			$.post('/tag', {
+				width:width, 
+				height:height, 
+				top:top, 
+				left:left, 
+				label:label,
+				imageId: imageId }, function(result){
+				theTag.id = result.id;
+			} );
+		},
+		remove: function(id){
+			$.ajax({
+				type: "DELETE",
+				url:'/tag',
+				data:{id:id}
+			});
+		}
+	});
+</script>
+	</body>
+</hmtl>

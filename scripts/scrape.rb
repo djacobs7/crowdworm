@@ -1,0 +1,5 @@
+allImages = ["ADA", "ADE", "ADF", "ADL", "AFD", "AIA", "AIB", "AIM", "AIN", "AIY", "AIZ", "ALA", "ALM", "ALN", "AQR", "ASE", "ASG", "ASH", "ASI", "ASJ", "ASK", "ASn", "AUA", "AVA", "AVB", "AVD", "AVE", "AVF", "AVG", "AVH", "AVJ", "AVK", "AVL", "AVM", "AWA", "AWB", "AWC", "BAG", "BDU", "CAN", "CEP", "DAn", "DBn", "DDn", "DVA", "DVB", "DVC", "FLP", "GLR", "HSN", "IL1", "IL2", "LUA", "OLL", "OLQ", "PDA", "PDB", "PDE", "PHA", "PHB", "PHC", "PLM", "PLN", "PQR", "PVC", "PVD", "PVM", "PVN", "PVP", "PVQ", "PVR", "PVT", "PVW", "RIA", "RIB", "RIC", "RID", "RIF", "RIG", "RIH", "RIM", "RIP", "RIR", "RIS", "RIV", "RMD", "RME", "RMF", "RMG", "RMH", "SAA", "SAB", "SDQ", "SIA", "SIB", "SMB", "SMD", "URA", "URB", "URX", "URY", "VAn", "VBn", "VCn", "VDn"];
+
+allImages.each do |name|
+  `wget "http://www.wormatlas.org/ver1/MoW_built0.92/art/#{name.downcase}/#{name.downcase}_connec1.jpg"`  
+end
