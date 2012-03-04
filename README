@@ -1,0 +1,30 @@
+
+Getting started - 
+
+
+Install these prerequisites
+
+Install MongoDB
+http://www.mongodb.org/downloads
+
+Install NodeJS
+http://nodejs.org/
+
+Start the database:
+
+create a database in mongo called wormweb
+
+mongod
+
+You will need to seed data into your database
+
+Start the server
+node app.js
+
+This will launch the app on port 3000
+
+to access the db in mongo
+
+./mongo wormweb
+
+> db.images.find()
