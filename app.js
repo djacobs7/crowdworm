@@ -28,10 +28,10 @@ app.configure('production', function(){
 
 //mongo
 
-require.paths.unshift('support/mongoose/lib');
+//require.paths.unshift('support/mongoose/lib');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/wormweb');
+mongoose.connect('mongodb://localhost/crowdweb');
 
 
 var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
@@ -66,14 +66,15 @@ app.get('/', function(req, res){
 
 app.get('/img/:id', function(req,res){
 	Image.find({ name: req.params.id },function( err, images ){
-		if ( !err ){
-			res.render('img.ejs', {
-				layout:false,
-				image: images[0]
-		
-			});			
-			
-		}
+		Tag.find( {imageId: images[0]._id } , function( error, tags ){
+			if ( !err ){
+				res.render('img.ejs', {
+					layout:false,
+					image: images[0],
+					tags: tags
+				});						
+			}
+			}); 	
 	});
 
 });
